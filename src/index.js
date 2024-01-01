@@ -12,7 +12,7 @@ const SPEED = 5;
 const TICK_RATE = 30;
 const PLAYER_SIZE = 32;
 let players = [];
-
+let decal2D = [[]];
 const inputsMap = {}
 function tick(delta) {
     for(const player of players){
@@ -64,6 +64,17 @@ async function main(){
 
         socket.on('disconnect', ()=>{
             players = players.filter((player) => player.id !== socket.id);
+        })
+        socket.on("rect", (startX, startY, width, height)=>{
+            const rectangle = {
+                x: startX,
+                y: startY,
+                width,
+                height,
+            };
+            
+            decal2D.push(rectangle);
+            io.emit("updateDecalMap", decal2D);
         })
     });
     app.use(express.static("public"));
