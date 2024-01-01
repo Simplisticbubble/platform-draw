@@ -53,8 +53,8 @@ async function main(){
         }
         players.push({
             id: socket.id,
-            x: 800,
-            y: 800,
+            x: 0,
+            y: 0,
         })
 
         socket.on('inputs', (inputs) => {

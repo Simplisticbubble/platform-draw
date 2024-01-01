@@ -55,8 +55,9 @@ window.addEventListener('keyup', (e) =>{
     socket.emit("inputs", inputs);
 });
 function loop(){
-    
+    canvas.clearRect(0,0,canvasEl.width, canvasEl.height);
     for(const player of players){
+        console.log(player);
         canvas.drawImage(santaImage, player.x, player.y);
     }
     window.requestAnimationFrame(loop);
